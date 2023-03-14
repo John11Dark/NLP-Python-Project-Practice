@@ -4,19 +4,19 @@
 filesArray = []
 
 with open("music.txt", "r") as file:
-    filesArray.append(file.read())
+    filesArray.append(file.read().replace("\n", " "))
 
 with open("sport.txt", "r") as file:
-    filesArray.append(file.read())
+    filesArray.append(file.read().replace("\n", " "))
 
 with open("animals.txt", "r") as file:
-    filesArray.append(file.read())
+    filesArray.append(file.read().replace("\n", " "))
 
 with open("earthquakes.txt", "r") as file:
-    filesArray.append(file.read())
+    filesArray.append(file.read().replace("\n", " "))
 
 with open("weather.txt", "r") as file:
-    filesArray.append(file.read())
+    filesArray.append(file.read().replace("\n", " "))
 
 
 # 2.	Create a TfidfVectorizer, removing the stop words at the same time, as follows:
@@ -31,21 +31,12 @@ vectorizer = TfidfVectorizer(stop_words="english")
 tfidf_matrix = vectorizer.fit_transform(filesArray)
 # 4.	For each textfile, print the most important token in that file, i.e. the token with the highest TFIDF value
 
-X = (
-    "Computers can analyze text",
-    "They do it using numbers and using data structures",
-    "Computers can process massive amounts of text data",
-)
-
 
 for i in range(0, len(filesArray)):
-    print("File: ", i)
-
     # Get the TFIDF values for the current file
-    tf_idf_matrix = vectorizer.fit_transform(X)
 
-    tfidf_values = tfidf_matrix.toarray()
-    # type: ignore # type: ignore
+    tfidf_values = tfidf_matrix.toarray()[i]
+
     # Get the feature names
     feature_names = vectorizer.get_feature_names_out()
 
@@ -56,7 +47,8 @@ for i in range(0, len(filesArray)):
     # Get the token with the highest TFIDF value
 
     max_token = feature_names[max_index]
-
+    print("File: ", i)
     print("Most important token: ", max_token)
-
     print("TFIDF value: ", tfidf_values[max_index])
+    # print("File content: ", filesArray[i], "==================================\n\n")
+    print("==================================\n")
