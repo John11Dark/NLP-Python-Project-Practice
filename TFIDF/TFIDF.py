@@ -35,7 +35,7 @@ tfidf_matrix = vectorizer.fit_transform(filesArray)
 for i in range(0, len(filesArray)):
     # Get the TFIDF values for the current file
 
-    tfidf_values = tfidf_matrix.toarray()[i]
+    tfidf_values = tfidf_matrix.toarray()[i]  # type: ignore
 
     # Get the feature names
     feature_names = vectorizer.get_feature_names_out()
