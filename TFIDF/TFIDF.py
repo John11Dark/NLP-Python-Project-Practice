@@ -52,3 +52,14 @@ for i in range(0, len(filesArray)):
     print("TFIDF value: ", tfidf_values[max_index])
     # print("File content: ", filesArray[i], "==================================\n\n")
     print("==================================\n")
+
+    # compare the five files and find the most similar pair of files
+
+from sklearn.metrics.pairwise import cosine_similarity
+
+for i in range(0, len(filesArray)):
+    for j in range(i + 1, len(filesArray)):
+        similarity = cosine_similarity(tfidf_matrix[i], tfidf_matrix[j])
+        print("File: ", i, " and File: ", j)
+        print("Cosine similarity: ", similarity[0][0])
+        print("==================================\n")

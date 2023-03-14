@@ -46,6 +46,7 @@ X = vectorizer.fit_transform(questions)
 while True:
     user_input = input("Ask a question: ")
     if user_input == "bye":
+        print("Bye, Have a nice day!")
         break
     user_input_vector = vectorizer.transform([user_input])
     if user_input_vector.nnz == 0:
