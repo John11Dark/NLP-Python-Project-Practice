@@ -21,11 +21,12 @@ def intersection(listOne, listTwo):
 
 import pytesseract
 from PIL import Image
-import nltk
 from nltk.tokenize import wordpunct_tokenize
 
-for i in range(1, 6):
-    image = Image.open("images/student" + str(i) + ".png")
+pytesseract.pytesseract.tesseract_cmd = r"D:\Program Files\tesseract-ocr\tesseract.exe"
+for i in range(1, 5):
+    image = Image.open("Images/student" + str(i) + ".png")
+    # print("Student " + str(i) + " image: ", image)
     text = pytesseract.image_to_string(image)
     tokens = wordpunct_tokenize(text)
     common = intersection(symptoms, tokens)
